@@ -16,7 +16,7 @@ public class personDAO {
 
     public void insert(person person) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.executeUpdate("insert into person values(" + person.getId() + ",'" + person.getNome() + "')");
+        statement.executeUpdate("insert into person values(" + person.getId() + ",'" + person.getName() + "')");
         statement.close();
     }
 
@@ -28,19 +28,19 @@ public class personDAO {
 
     public List<person> getAll() throws SQLException {
 
-        List<person> pessoas = new ArrayList<person>();
+        List<person> persons = new ArrayList<person>();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from person");
         while (rs.next())
         {
             person p = new person();
             p.setId(rs.getInt("id"));
-            p.setNome(rs.getString("name"));
-            pessoas.add(p);
+            p.setName(rs.getString("name"));
+            persons.add(p);
         }
 
         statement.close();
-        return pessoas;
+        return persons;
     }
 
     public person getById(int id) throws SQLException {
@@ -51,7 +51,7 @@ public class personDAO {
         if (rs.next()){
             person p = new person();
             p.setId(rs.getInt("id"));
-            p.setNome(rs.getString("name"));
+            p.setName(rs.getString("name"));
             return p;
         }
         statement.close();
@@ -62,7 +62,7 @@ public class personDAO {
 
         Statement statement = connection.createStatement();
         statement.executeUpdate(
-                "update person set name = '" + p.getNome() +
+                "update person set name = '" + p.getName() +
                         "', id = " + p.getId() +
                         " where person.id = " + id);
         statement.close();

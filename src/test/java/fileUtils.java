@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class fileUtils {
-    public static String carregarArquivoTexto(String filename){
+    public static String loadTextFile(String filename){
         try {
             BufferedReader br =  new BufferedReader(new FileReader(filename));
             String line;
